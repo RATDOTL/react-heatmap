@@ -1,25 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import CalendarHeatmap from "react-calendar-heatmap";
+import "react-calendar-heatmap/dist/styles.css";
+import ReactTooltip from "react-tooltip";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1>react-calendar-heatmap</h1>
+      <div>
+        <CalendarHeatmap
+          // 表示させる月
+          startDate={new Date("2022-01-01")}
+          endDate={new Date("2022-12-31")}
+
+          values={[
+            { date: "2022-07-03", count: 1 },
+            { date: "2022-08-22", count: 2 },
+            { date: "2022-07-29", count: 4 },
+            { date: '2022-10-01', count: 1 },
+            { date: '2022-10-03', count: 2 },
+            { date: '2022-10-06', count: 3 },
+            { date: '2022-10-10', count: 4 },
+            { date: '2022-10-07', count: 1 },
+            { date: '2022-09-15', count: 3 },
+            // ...and so on
+          ]}
+
+          // color
+          classForValue={(value) => {
+            if (!value) {
+              return "color-empty";
+            }
+            return `color-scale-${value.count}`;
+          }}
+          tooltipDataAttrs={(value) => {
+            if (!value || !value.date) {
+              return null;
+            }
+            // react-tooltipの構成
+            return {
+              "data-tip": `${value.date} has count: ${
+                value.count
+              }`,
+            };
+          }}
+        />
+      </div>
+      <ReactTooltip />
     </div>
   );
-}
+};
 
 export default App;
