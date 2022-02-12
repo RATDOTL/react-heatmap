@@ -4,27 +4,24 @@ import CalendarHeatmap from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
 import ReactTooltip from "react-tooltip";
 
+//現在から8ヶ月前の日時
+var dt = new Date();
+dt.setMonth(dt.getMonth() - 8);
+//
+
 const App = () => {
   return (
     <div className="container">
       <h1>react-calendar-heatmap</h1>
-      <div>
+      <div class="heatmap">
         <CalendarHeatmap
           // 表示させる月
-          startDate={new Date("2022-01-01")}
-          endDate={new Date("2022-12-31")}
+          startDate={new Date(dt)}
+          endDate={new Date()}
 
           values={[
             { date: "2022-01-03", count: 1 },
-            { date: "2022-02-22", count: 2 },
-            { date: "2022-03-29", count: 4 },
-            { date: '2022-04-01', count: 1 },
-            { date: '2022-10-03', count: 2 },
-            { date: '2022-10-06', count: 3 },
-            { date: '2022-10-10', count: 4 },
-            { date: '2022-10-07', count: 1 },
-            { date: '2022-09-15', count: 3 },
-            // ...and so on
+            { date: "2022-02-02", count: 2 },
           ]}
 
           // color
